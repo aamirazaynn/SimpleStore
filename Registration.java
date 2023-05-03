@@ -4,12 +4,12 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class Registeration {
+public class Registration {
     private String address;
     private String email;
     private String password;
 
-    public Registeration() throws IOException {
+    public Registration() throws IOException {
         // String e, p;
         // Scanner cin = new Scanner(System.in);
         // System.out.println("Enter your address: ");
