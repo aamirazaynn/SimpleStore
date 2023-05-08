@@ -1,51 +1,89 @@
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.IOException;
+
 public class Customer {
     // instance variables
-    private String name; 
     private String address;
     private String phone;
     private String email;
     private String password;
+    private boolean isLoggedIn = false;
 
     // constructor
-    public Customer(String name, String address, String phone, String email, String password) {
-        this.name = name;
-        this.address = address;
-        this.phone = phone;
-        this.email = email;
-        this.password = password;
+    public Customer() {
+
     }
 
     // getters
-    public String getName() {
-        return name;
-    }
     public String getAddress() {
         return address;
     }
+
     public String getPhone() {
         return phone;
     }
+
     public String getEmail() {
         return email;
     }
+
     public String getPassword() {
         return password;
     }
 
-    // setters
-    public void setName(String name) {
-        this.name = name;
+    public boolean getIsLoggedIn() {
+        return isLoggedIn;
     }
+
+    // setters
     public void setAddress(String address) {
         this.address = address;
     }
+
     public void setPhone(String phone) {
         this.phone = phone;
     }
-    public void setEmail(String email) {
-        this.email = email;
+
+    // register user
+    public void register() {
+
     }
-    public void setPassword(String password) {
-        this.password = password;
+
+    // login user
+    public void login(String e, String p) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader("registrationData.txt"));
+        String line, word1 = "", word2 = "";
+
+        // read file content
+        while ((line = reader.readLine()) != null) {
+            // search for email and password
+            for (int i = 0; i < line.length(); i++) {
+                if (line.charAt(i) == ' ') {
+                    word1 = line.substring(0, i);
+                    word2 = line.substring(i + 1, line.length());
+                    break;
+                }
+            }
+            
+            // compare email and password
+            if ((e.equals(word1)) && (p.equals(word2))) {
+                this.email = e;
+                this.password = p;
+                System.out.println("Login successful!");
+                isLoggedIn = true;
+                break;
+            }
+        }
+        reader.close();
+        
+        // compare email and password
+        if (!e.equals(word1) && !p.equals(word2)) {
+            System.out.println("Wrong email or password!");
+        } else if (!e.equals(word1) && p.equals(word2)) {
+            System.out.println("Wrong email!");
+        } else if (e.equals(word1) && !p.equals(word2)) {
+            System.out.println("Wrong password!");
+        }
     }
 }
