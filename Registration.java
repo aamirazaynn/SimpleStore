@@ -8,18 +8,14 @@ import java.io.IOException;
 
 public class Registration {
     // instance variables
-    private String address;
     private String email;
     private String password;
     private boolean exist = false;
 
     // constructor
     public Registration(String e, String p) {
-        this.address = "";
         setEmail(e);
-        this.email = e;
         setPassword(p);
-        this.password = p;
     }
 
     // regex functions for email and password
@@ -64,10 +60,6 @@ public class Registration {
     }
 
     // getters
-    public String getAddress() {
-        return address;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -77,18 +69,13 @@ public class Registration {
     }
 
     // setters
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public void setEmail(String email) {
         while (!isValidEmail(email)) {
-            try (Scanner cin = new Scanner(System.in)) {
+            Scanner cin = new Scanner(System.in);
                 System.out.print("Invalid email address, please enter a valid email: ");
                 email = cin.nextLine();
-            }
         }
-        this.email = email;
+       this.email = email;
     }
 
     public void setPassword(String password) {

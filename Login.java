@@ -1,29 +1,29 @@
-import java.io.FileReader;
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 
-public class Customer {
+public class Login {
     // instance variables
-    private String address;
-    private String phone;
     private String email;
     private String password;
     private boolean isLoggedIn = false;
 
     // constructor
-    public Customer() {
+    public Login() {
+        this.email = "";
+        this.password = "";
+    }
 
+    // setters
+    public void setEmail(String e) {
+        this.email = e;
+    }
+
+    public void setPassword(String p) {
+        this.password = p;
     }
 
     // getters
-    public String getAddress() {
-        return address;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -36,21 +36,6 @@ public class Customer {
         return isLoggedIn;
     }
 
-    // setters
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    // register user
-    public void register() {
-
-    }
-
-    // login user
     public void login(String e, String p) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader("registrationData.txt"));
         String line, word1 = "", word2 = "";
@@ -65,7 +50,7 @@ public class Customer {
                     break;
                 }
             }
-            
+
             // compare email and password
             if ((e.equals(word1)) && (p.equals(word2))) {
                 this.email = e;
@@ -76,14 +61,9 @@ public class Customer {
             }
         }
         reader.close();
-        
-        // compare email and password
-        if (!e.equals(word1) && !p.equals(word2)) {
-            System.out.println("Wrong email or password!");
-        } else if (!e.equals(word1) && p.equals(word2)) {
-            System.out.println("Wrong email!");
-        } else if (e.equals(word1) && !p.equals(word2)) {
-            System.out.println("Wrong password!");
+
+        if(!isLoggedIn) {
+            System.out.println("Login Failed!");
         }
     }
 }
