@@ -1,4 +1,3 @@
-import java.util.Vector;
 import java.time.LocalDate;
 
 public class Order {
@@ -7,10 +6,10 @@ public class Order {
     private LocalDate orderDate;
     private String address;
     private OrderStatus status;
-    private Vector<Item> items = new Vector<Item>();
+    private ShoppingCart cart;
 
-    public Order(String address,Vector<Item> i) {
-        this.items = i;
+    public Order(String address,ShoppingCart cart) {
+        this.cart = cart;
         this.orderId = nextOrderId;
         this.orderDate = LocalDate.now();
         this.address = address;
@@ -19,7 +18,6 @@ public class Order {
     }
 
     // setters
-
     public void setAddress(String address) {
         this.address = address;
     }
@@ -43,5 +41,9 @@ public class Order {
 
     public OrderStatus getOrderStatus() {
         return status;
+    }
+
+    public ShoppingCart getCart() {
+        return cart;
     }
 }

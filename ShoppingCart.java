@@ -35,10 +35,15 @@ public class ShoppingCart {
     }
 
     public void calcTotalPrice() {
+        totalPrice = 0;
         for (Map.Entry<Item, Integer> entry : items.entrySet()) {
             Item item = entry.getKey();
             int quantity = entry.getValue();
-            totalPrice += item.getPrice() * quantity;
+            this.totalPrice += item.getPrice() * quantity;
         }
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
     }
 }
