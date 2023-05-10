@@ -11,8 +11,8 @@ public class Main{
         boolean exist = false;
         Login y = new Login();
         System.out.println("Welcome to our store TOFFEE <3\n"
-                            + "What do you want to do todat?\n"
-                            + "1. Register\n2.Login\n3.View catalog\n4.Exit\n");
+                            + "What do you want to do today?\n"
+                            + "1.Register\n2.Login\n3.View catalog\n4.Exit");
         input = sc.nextInt();
         while(!exist) {
             switch (input) {
@@ -22,6 +22,8 @@ public class Main{
                     System.out.print("Enter your password: ");
                     password = sc.next();
                     x.register(email, password);
+                    System.out.println("What else you wanna do? ");
+                    input = sc.nextInt();
                     break;
                 case 2:
                     System.out.print("Enter your email: ");
@@ -29,18 +31,29 @@ public class Main{
                     System.out.print("Enter your password: ");
                     password = sc.next();
                     y = x.login(email, password);
+                    System.out.println("What else you wanna do? ");
+                    input = sc.nextInt();
                     break;
                 case 3:
-                    Category z = new Category();
-                    z.ViewItems();
+                    if (y.getIsLoggedIn()) {
+                    Catalog z = new Catalog();
+                    z.viewCatalog();
+                        System.out.println("What else you wanna do? ");
+                        input = sc.nextInt();
                     break;
+                    }
+                    else {
+                        System.out.println("You are not logged in");
+                        System.out.println("What else you wanna do? ");
+                        input = sc.nextInt();
+                        break;
+                    }
                 case 4:
                     System.out.println("See you next time ;)");
                     exist = true;
                     break;
             }
-            System.out.println("What else you wanna do? ");
-            input = sc.nextInt();
+
         }
     }
 }

@@ -38,7 +38,7 @@ public class Login {
 
     public void login(String e, String p) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader("registrationData.txt"));
-        String line, word1 = "", word2 = "";
+        String line, word1 = "", word2 = "", word3 = "";
 
         // read file content
         while ((line = reader.readLine()) != null) {
@@ -46,7 +46,13 @@ public class Login {
             for (int i = 0; i < line.length(); i++) {
                 if (line.charAt(i) == ' ') {
                     word1 = line.substring(0, i);
-                    word2 = line.substring(i + 1, line.length());
+                    for (int j = i+1; j < line.length(); j++) {
+                        if (line.charAt(j) == ' ') {
+                            word2 = line.substring(i + 1, j);
+                            word3 = line.substring(j + 1, line.length());
+                        }
+                    }
+
                     break;
                 }
             }
@@ -55,7 +61,7 @@ public class Login {
             if ((e.equals(word1)) && (p.equals(word2))) {
                 this.email = e;
                 this.password = p;
-                System.out.println("Login successful!");
+                System.out.println("Login successful! , Welcome "+word3 +":)");
                 isLoggedIn = true;
                 break;
             }
