@@ -52,7 +52,6 @@ public class Login {
                             word3 = line.substring(j + 1, line.length());
                         }
                     }
-
                     break;
                 }
             }
@@ -61,7 +60,7 @@ public class Login {
             if ((e.equals(word1)) && (p.equals(word2))) {
                 this.email = e;
                 this.password = p;
-                System.out.println("Login successful! , Welcome "+word3 +":)");
+                System.out.println("Login successful! , Welcome "+ word3 +":)");
                 isLoggedIn = true;
                 break;
             }

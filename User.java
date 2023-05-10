@@ -8,8 +8,8 @@ public class User {
     }
 
     // register user
-    public void register(String email, String password) throws IOException {
-        Registration x = new Registration(email, password);
+    public void register(String email, String password, String name) throws IOException {
+        Registration x = new Registration(email, password, name);
         x.saveData();
     }
 

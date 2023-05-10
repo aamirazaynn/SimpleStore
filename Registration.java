@@ -10,12 +10,14 @@ public class Registration {
     // instance variables
     private String email;
     private String password;
+    private String name;
     private boolean exist = false;
 
     // constructor
-    public Registration(String e, String p) {
+    public Registration(String e, String p, String n) {
         setEmail(e);
         setPassword(p);
+        setName(n);
     }
 
     // regex functions for email and password
@@ -68,6 +70,10 @@ public class Registration {
         return password;
     }
 
+    public String getName() {
+        return name;
+    }
+
     // setters
     public void setEmail(String email) {
         while (!isValidEmail(email)) {
@@ -92,6 +98,11 @@ public class Registration {
             }
         }
         this.password = password;
+    }
+
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     // check if data is valid
@@ -126,7 +137,7 @@ public class Registration {
             }
             // if email does not exist save data
             if(!exist){
-                fileContent += getEmail() + " " + getPassword();
+                fileContent += getEmail() + " " + getPassword() + " " + getName();
             }
             reader.close();
 
