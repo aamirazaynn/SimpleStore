@@ -23,6 +23,14 @@ public class Catalog {
         }
     }
 
+    public boolean validIndex(int index) {
+        if(index < 0 || index >= items.size()) {
+            System.out.println("The number you have entered is not valid");
+            return false;
+        }
+        return true;
+    }
+
     public Item getItem(int index) {
         return items.get(index-1);
     }

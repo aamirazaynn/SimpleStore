@@ -79,23 +79,22 @@ public class Registration {
         while (!isValidEmail(email)) {
             Scanner cin = new Scanner(System.in);
                 System.out.print("Invalid email address, please enter a valid email: ");
-                email = cin.nextLine();
+                email = cin.next();
         }
        this.email = email;
     }
 
     public void setPassword(String password) {
         while (!isStrongPassword(password)) {
-            try (Scanner cin = new Scanner(System.in)) {
-                System.out.println("Strong password conditions: \n " +
-                        "It should have a minimum length of 8 characters.\n " +
-                        "It should contain at least one uppercase letter. \n " +
-                        "It should contain at least one lowercase letter. \n " +
-                        "It should contain at least one digit. \n " +
-                        "It should contain at least one special character (e.g., !@#$%^&*(),.\"?:{}|<>).");
-                System.out.print("Not strong password, please enter a strong one: ");
-                password = cin.nextLine();
-            }
+            Scanner cin = new Scanner(System.in);
+            System.out.println("Strong password conditions: \n " +
+                    "It should have a minimum length of 8 characters.\n " +
+                    "It should contain at least one uppercase letter. \n " +
+                    "It should contain at least one lowercase letter. \n " +
+                    "It should contain at least one digit. \n " +
+                    "It should contain at least one special character (e.g., !@#$%^&*(),.\"?:{}|<>).");
+            System.out.print("Not strong password, please enter a strong one: ");
+            password = cin.next();
         }
         this.password = password;
     }

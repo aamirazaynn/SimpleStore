@@ -67,23 +67,34 @@ public class main {
                                 cart.viewCart();
                                 break;
                             case 2:
+                                catalog.viewCatalog();
                                 System.out.print("\nEnter the number of the item you want to add to the cart? ");
                                 int index = sc.nextInt();
-                                System.out.print("How many do you want to add? ");
-                                int quantity = sc.nextInt();
-                                cart.addItem(catalog.getItem(index), quantity);
+                                if(catalog.validIndex(index)) {
+                                    System.out.print("How many do you want to add? ");
+                                    int quantity = sc.nextInt();
+                                    cart.addItem(catalog.getItem(index), quantity);
+                                }
                                 break;
                             case 3:
+                                catalog.viewCatalog();
+                                cart.viewCart();
                                 System.out.print("\nEnter the number of the item you want to remove from the cart? ");
                                 index = sc.nextInt();
-                                cart.removeItem(catalog.getItem(index));
+                                if(catalog.validIndex(index)) {
+                                    cart.removeItem(catalog.getItem(index));
+                                }
                                 break;
                             case 4:
+                                catalog.viewCatalog();
+                                cart.viewCart();
                                 System.out.print("\nEnter the number of the item you want to change the quantity of? ");
                                 index = sc.nextInt();
-                                System.out.print("Enter the new quentity: ");
-                                quantity = sc.nextInt();
-                                cart.changeQuantity(catalog.getItem(index), quantity);
+                                if(catalog.validIndex(index)) {
+                                    System.out.print("Enter the new quantity: ");
+                                    int quantity = sc.nextInt();
+                                    cart.changeQuantity(catalog.getItem(index), quantity);
+                                }
                                 break;
                             case 5:
                                 System.out.print("\nEnter the address you want to send the order to: ");
@@ -98,7 +109,7 @@ public class main {
                                     System.out.println(order.getOrderStatus());
                                     System.out.println("Thank you for shopping with us <3\n");
                                 } else {
-                                    System.out.println("Faild to confirm the order, please try again :(");
+                                    System.out.println("Failed to confirm the order, please try again :(");
                                 }
                                 
                                 break;
