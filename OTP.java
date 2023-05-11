@@ -7,8 +7,8 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class OTP {
-    private static final String SENDER = "yehiazakaria539@gmail.com";
-    private static final String PASSWORD = "1922004yzz";
+    private static final String SENDER = "amirazayn5@gmail.com";
+    private static final String PASSWORD = "npmnbuuzfjypmgrj";
     private String RECEIVER;
     private int otp = (int) (Math.random() * 1000000);
 
@@ -22,10 +22,11 @@ public class OTP {
 
     public void sendOTP() throws MessagingException {
         Properties props = new Properties();
+        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.port", "465");
 
         Session session = Session.getInstance(props, new javax.mail.Authenticator() {
             protected javax.mail.PasswordAuthentication getPasswordAuthentication() {

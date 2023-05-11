@@ -14,10 +14,7 @@ public class Registration {
     private boolean exist = false;
 
     // constructor
-    public Registration(String e, String p, String n) {
-        setEmail(e);
-        setPassword(p);
-        setName(n);
+    public Registration() {
     }
 
     // regex functions for email and password
@@ -78,10 +75,10 @@ public class Registration {
     public void setEmail(String email) {
         while (!isValidEmail(email)) {
             Scanner cin = new Scanner(System.in);
-                System.out.print("Invalid email address, please enter a valid email: ");
-                email = cin.next();
+            System.out.print("Invalid email address, please enter a valid email: ");
+            email = cin.next();
         }
-       this.email = email;
+        this.email = email;
     }
 
     public void setPassword(String password) {
@@ -99,7 +96,6 @@ public class Registration {
         this.password = password;
     }
 
-
     public void setName(String name) {
         this.name = name;
     }
@@ -112,6 +108,27 @@ public class Registration {
         return false;
     }
 
+    public boolean isExist(String e) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader("registrationData.txt"));
+            String line, word = "";
+        while ((line = reader.readLine()) != null) {
+            // search for email
+            for (int i = 0; i < line.length(); i++) {
+                if (line.charAt(i) == ' ') {
+                    word = line.substring(0, i);
+                    break;
+                }
+            }
+            // check if email already exists
+            if ((e.equals(word))) {
+                System.out.println("Email already exists!");
+                this.exist = true;
+            }
+        }
+        reader.close();
+        return exist;
+    }
+
     // save data
     public void saveData() throws IOException {
         if (checkData()) {
@@ -119,7 +136,7 @@ public class Registration {
             String fileContent = "", line, word = "";
 
             // read file content
-            while((line = reader.readLine()) != null) {
+            while ((line = reader.readLine()) != null) {
                 fileContent += line + "\n";
                 // search for email
                 for (int i = 0; i < line.length(); i++) {
@@ -128,14 +145,9 @@ public class Registration {
                         break;
                     }
                 }
-                // check if email already exists
-                if ((getEmail().equals(word))) {
-                    System.out.println("Email already exists!");
-                    exist = true;
-                }
             }
             // if email does not exist save data
-            if(!exist){
+            if (!isExist(getEmail())) {
                 fileContent += getEmail() + " " + getPassword() + " " + getName();
             }
             reader.close();

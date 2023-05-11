@@ -9,22 +9,27 @@ public class User {
     }
 
     // register user
-    public void register(String email, String password, String name) throws IOException{
-        Registration x = new Registration(email, password, name);
-        OTP otp = new OTP();
-        otp.setRECEIVER(email);
-        try {
-            otp.sendOTP();
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
-        }
-        System.out.print("Enter OTP: ");
-        Scanner sc = new Scanner(System.in);
-        int otpInput = sc.nextInt();
-        if(otp.checkOTP(otpInput)) {
-            x.saveData();
-        } else {
-            System.out.println("Registration Failed :(");
+    public void register(String email, String password, String name) throws IOException {
+        Registration x = new Registration();
+        if (!x.isExist(email)) {
+            x.setEmail(email);
+            x.setPassword(password);
+            x.setName(name);
+            OTP otp = new OTP();
+            otp.setRECEIVER(email);
+            try {
+                otp.sendOTP();
+            } catch (MessagingException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.print("Enter OTP: ");
+            Scanner sc = new Scanner(System.in);
+            int otpInput = sc.nextInt();
+            if (otp.checkOTP(otpInput)) {
+                x.saveData();
+            } else {
+                System.out.println("Registration Failed :(");
+            }
         }
     }
 
@@ -33,7 +38,7 @@ public class User {
         Login x = new Login();
         x.login(email, password);
         Scanner sc = new Scanner(System.in);
-        while(!x.getIsLoggedIn()) {
+        while (!x.getIsLoggedIn()) {
             System.out.print("Enter correct email: ");
             email = sc.nextLine();
 
