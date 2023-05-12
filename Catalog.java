@@ -40,7 +40,7 @@ public class Catalog {
      *         false if the index is not valid
      */
     public boolean validIndex(int index) {
-        if(index < 0 || index >= items.size()) {
+        if(index < 0 || index > items.size()) {
             System.out.println("The number you have entered is not valid");
             return false;
         }
