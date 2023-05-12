@@ -162,7 +162,7 @@ public class Registration {
     }
     
     // otp
-    public void otp(String email) throws IOException {
+    public boolean otp(String email) throws IOException {
         OTP otp = new OTP();
         otp.setRECEIVER(email);
         try {
@@ -174,9 +174,10 @@ public class Registration {
         Scanner sc = new Scanner(System.in);
         int otpInput = sc.nextInt();
         if (otp.checkOTP(otpInput)) {
-            saveData();
+            return true;
         } else {
             System.out.println("Registration Failed :(");
+            return false;
         }
     }
 }

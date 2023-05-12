@@ -15,7 +15,9 @@ public class User {
             x.setEmail(email);
             x.setPassword(password);
             x.setName(name);
-            x.otp(email);
+            if (x.otp(email)) {
+                x.saveData();
+            }
         }
     }
 
