@@ -38,12 +38,12 @@ public class OTP {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(SENDER));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(RECEIVER));
-            message.setSubject("Your OTP");
-            message.setText("Your OTP is: " + otp);
+            message.setSubject("Email Verification");
+            message.setText("To ensure your account is verified, please enter the following OTP in our app: " + otp
+                    + ".\n\nBest Regards,\nToffee System.");
             Transport.send(message);
             System.out.println("OTP sent successfully to " + RECEIVER);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e);
         }
     }
@@ -57,10 +57,5 @@ public class OTP {
             return false;
         }
     }
-
-
-
-
-
 
 }

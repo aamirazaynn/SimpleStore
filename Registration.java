@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.regex.Pattern;
+import javax.mail.MessagingException;
 import java.io.BufferedWriter;
 import java.io.BufferedReader;
 import java.io.FileWriter;
@@ -108,6 +109,7 @@ public class Registration {
         return false;
     }
 
+    // check if email already exists
     public boolean isExist(String e) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader("registrationData.txt"));
             String line, word = "";
@@ -156,6 +158,25 @@ public class Registration {
             BufferedWriter writer = new BufferedWriter(new FileWriter("registrationData.txt"));
             writer.write(fileContent);
             writer.close();
+        }
+    }
+    
+    // otp
+    public void otp(String email) throws IOException {
+        OTP otp = new OTP();
+        otp.setRECEIVER(email);
+        try {
+            otp.sendOTP();
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.print("Enter OTP: ");
+        Scanner sc = new Scanner(System.in);
+        int otpInput = sc.nextInt();
+        if (otp.checkOTP(otpInput)) {
+            saveData();
+        } else {
+            System.out.println("Registration Failed :(");
         }
     }
 }

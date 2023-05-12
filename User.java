@@ -15,21 +15,7 @@ public class User {
             x.setEmail(email);
             x.setPassword(password);
             x.setName(name);
-            OTP otp = new OTP();
-            otp.setRECEIVER(email);
-            try {
-                otp.sendOTP();
-            } catch (MessagingException e) {
-                throw new RuntimeException(e);
-            }
-            System.out.print("Enter OTP: ");
-            Scanner sc = new Scanner(System.in);
-            int otpInput = sc.nextInt();
-            if (otp.checkOTP(otpInput)) {
-                x.saveData();
-            } else {
-                System.out.println("Registration Failed :(");
-            }
+            x.otp(email);
         }
     }
 
