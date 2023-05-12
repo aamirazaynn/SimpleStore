@@ -39,7 +39,7 @@ public class User {
      */
     public Login login(String email, String password) throws IOException {
         Login x = new Login();
-        x.login(email, password);
+        x.confirmLogin(email, password);
         Scanner sc = new Scanner(System.in);
         while (!x.getIsLoggedIn()) {
             System.out.print("Enter correct email: ");
@@ -48,7 +48,7 @@ public class User {
             System.out.print("Enter correct password: ");
             password = sc.nextLine();
 
-            x.login(email, password);
+            x.confirmLogin(email, password);
         }
 
         return x;

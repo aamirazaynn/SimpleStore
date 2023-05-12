@@ -66,7 +66,7 @@ public class Login {
      * @param p
      * @throws IOException
      */
-    public void login(String e, String p) throws IOException {
+    public void confirmLogin(String e, String p) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader("registrationData.txt"));
         String line, word1 = "", word2 = "", word3 = "";
 
