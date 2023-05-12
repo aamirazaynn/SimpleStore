@@ -6,20 +6,34 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+/**
+ *  this class is used to send email with OTP
+ */
 public class OTP {
     private static final String SENDER = "amirazayn5@gmail.com";
     private static final String PASSWORD = "npmnbuuzfjypmgrj";
     private String RECEIVER;
     private int otp = (int) (Math.random() * 1000000);
 
+    /**
+     *  constructor
+     */
     public OTP() {
 
     }
 
+    /**
+     *  this method is used to set the receiver
+     * @param RECEIVER
+     */
     public void setRECEIVER(String RECEIVER) {
         this.RECEIVER = RECEIVER;
     }
 
+    /**
+     *  this method is used to send email with OTP
+     * @throws MessagingException
+     */
     public void sendOTP() throws MessagingException {
         Properties props = new Properties();
         props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
@@ -48,6 +62,11 @@ public class OTP {
         }
     }
 
+    /**
+     *  this method is used to check if the user entered the correct OTP
+     * @param otp
+     * @return
+     */
     public boolean checkOTP(int otp) {
         if (this.otp == otp) {
             System.out.println("OTP verified");

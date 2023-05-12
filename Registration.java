@@ -7,6 +7,10 @@ import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ *  This class is used to register a new user
+ *
+ */
 public class Registration {
     // instance variables
     private String email;
@@ -18,6 +22,12 @@ public class Registration {
     public Registration() {
     }
 
+    /**
+     *  this method is used to check if email is valid
+     * @param email
+     * @return true if email is valid
+     *         false if email is invalid
+     */
     // regex functions for email and password
     public static boolean isValidEmail(String email) {
         // Regular expression pattern for email validation
@@ -30,6 +40,12 @@ public class Registration {
         return pattern.matcher(email).matches();
     }
 
+    /**
+     *  this method is used to check if password is strong enough
+     * @param password
+     * @return true if password is strong enough
+     *         false if password is not strong enough
+     */
     public static boolean isStrongPassword(String password) {
         // Minimum length of 8 characters
         if (password.length() < 8) {
@@ -60,19 +76,37 @@ public class Registration {
     }
 
     // getters
+
+    /**
+     * this method is used to get the email
+     * @return the email
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * this method is used to get the password
+     * @return the password
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     *  this method is used to get the name
+     * @return the name
+     */
     public String getName() {
         return name;
     }
 
     // setters
+
+    /**
+     * this method is used to set the email
+     * @param email
+     */
     public void setEmail(String email) {
         while (!isValidEmail(email)) {
             Scanner cin = new Scanner(System.in);
@@ -82,6 +116,10 @@ public class Registration {
         this.email = email;
     }
 
+    /**
+     *  this method is used to set the password
+     * @param password
+     */
     public void setPassword(String password) {
         while (!isStrongPassword(password)) {
             Scanner cin = new Scanner(System.in);
@@ -97,10 +135,19 @@ public class Registration {
         this.password = password;
     }
 
+    /**
+     *  this method is used to set the name
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     *  this method is used to check if data is valid
+     * @return true if data is valid
+     *         false if data is invalid
+     */
     // check if data is valid
     public boolean checkData() {
         if (isValidEmail(email) && isStrongPassword(password)) {
@@ -109,6 +156,13 @@ public class Registration {
         return false;
     }
 
+    /**
+     * this method is used to check if email already exists
+     * @param e
+     * @return true if email already exists
+     *         false if email does not exist
+     * @throws IOException
+     */
     // check if email already exists
     public boolean isExist(String e) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader("registrationData.txt"));
@@ -131,7 +185,10 @@ public class Registration {
         return exist;
     }
 
-    // save data
+    /**
+     *  this method is used to save data
+     * @throws IOException
+     */
     public void saveData() throws IOException {
         if (checkData()) {
             BufferedReader reader = new BufferedReader(new FileReader("registrationData.txt"));
@@ -160,7 +217,14 @@ public class Registration {
             writer.close();
         }
     }
-    
+
+    /**
+     *  this method is used to check if email is valid
+     * @param email
+     * @return true if email is valid
+     *         false if email is invalid
+     * @throws IOException
+     */
     // otp
     public boolean otp(String email) throws IOException {
         OTP otp = new OTP();
