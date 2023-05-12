@@ -100,19 +100,19 @@ public class main {
                                 System.out.print("\nEnter the address you want to send the order to: ");
                                 String address = sc.next();
                                 Order order = new Order(address, cart);
-                                System.out.println(order.getOrderStatus());
+                                //System.out.println(order.getOrderStatus());
                                 System.out.println("to confirm the order, press 1");
                                 String confirm = sc.next();
                                 if (confirm == "1") {
                                     Payment payment = new Payment();
                                     payment.checkOut(order);
-                                    System.out.println(order.getOrderStatus());
+                                    //System.out.println(order.getOrderStatus());
                                     System.out.println("Thank you for shopping with us <3\n");
                                 } else {
                                     System.out.println("Failed to confirm the order, please try again :(");
                                 }
-                                
                                 break;
+                                
                         }
                     } else {
                         System.out.println("You are not logged in, please login first\n");
