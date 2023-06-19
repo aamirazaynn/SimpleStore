@@ -10,8 +10,8 @@ import javax.mail.internet.MimeMessage;
  *  this class is used to send email with OTP
  */
 public class OTP {
-    private static final String SENDER = "amirazayn5@gmail.com";
-    private static final String PASSWORD = "npmnbuuzfjypmgrj";
+    private static final String SENDER = "";
+    private static final String PASSWORD = "";
     private String RECEIVER;
     private int otp = (int) (Math.random() * 1000000);
 
